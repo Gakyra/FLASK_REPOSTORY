@@ -13,6 +13,20 @@ app = Flask(__name__)
 def main_func():
     return "This is a main package!"
 
+@app.route("/birth")
+def bir_func():
+    return "30/10/2009"
+
+@app.route("/pib")
+def pib_func():
+    return "Maksim Belosokhov Alexyovich"
+
+@app.route("/hobbi")
+def hobbi_func():
+    return "Computer programming, Baskteball, walk with friends"
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=os.getenv("DEBUG"))
