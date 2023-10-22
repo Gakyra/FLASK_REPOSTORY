@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template
 from dotenv import load_dotenv
+from enums import NAME,MAX_SCORE,students
 
 load_dotenv(
 
@@ -15,7 +16,18 @@ def main_func():
 
 @app.route("/")
 def index_func():
-    return render_template("base.html")
+    return render_template("base.html", title="Title test")
+
+@app.route("/context")
+def context_return():
+    context = {
+        "title": "Python course",
+        "students": students,
+        "name": NAME,
+        "max_score": MAX_SCORE
+    }
+    return render_template("context.html", **context)
+
 
 @app.route("/birth")
 def bir_func():
