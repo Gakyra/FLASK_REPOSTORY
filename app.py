@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template , request
 from dotenv import load_dotenv
 from enums import NAME,MAX_SCORE,students
 
@@ -39,9 +39,16 @@ def pib_func():
 
 @app.route("/hobbi")
 def hobbi_func():
-    return "Computer programming, Baskteball, walk with friends"
+    return "Computer programming, Basketball, walk with friends"
 
-
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        user = request.args.get("name")
+        return f"Method GET, user is {user}"
+    else:
+        user = request.form.get("name")
+        return f"Method POST, user is {user}"
 
 
 if __name__ == "__main__":
