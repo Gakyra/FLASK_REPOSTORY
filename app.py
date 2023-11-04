@@ -1,14 +1,27 @@
 import os
-from flask import Flask, render_template
-from dotenv import load_dotenv
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from model import Article
+from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 db = SQLAlchemy(app)
+
+load_dotenv()
+
+class Article(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    intro = db.Column(db.String(100), nullable=False)
+    text = db.Column(db.Text, nullable=False)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Article {self.id}"
+
 
 
 
@@ -38,7 +51,27 @@ def hobbi_func():
     return "Computer programming, Basketball, walk with friends"
 
 
+@app.route("/create-article", methods=["POST", "GET"])
+def create_article():
+    if request.method == "POST":
+        title = request.form["title"]
+        intro = request.form["intro"]
+        text = request.form["text"]
 
+        article = Article(
+            title=title,
+            intro=intro,
+            text=text
+        )
+
+        try:
+            db.session.add(article)
+            db.session.commit()
+            return redirect("/")
+        except Exception as exc:
+            return f"При збереженні виникла помилка: {exc}"
+    else:
+        return render_template("create_article.html")
 
 
 if __name__ == "__main__":
