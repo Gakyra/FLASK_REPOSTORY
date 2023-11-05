@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Загальний список
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Всі пости на сайті</h1>
+
+    {% for article in articles %}
+    <div class="alert alert-info">
+        <h2>{{   article.title   }}</h2>
+        <p>{{   article.intro   }}</p>
+        <p><b>Дата створення: {{    article.date.date()    }}</b></p>
+        <a href="/articles/{{ article.id }}" class="btn btn-dark">Детальніше</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
