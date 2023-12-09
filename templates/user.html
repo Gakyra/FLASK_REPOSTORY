@@ -8,12 +8,12 @@
 <div class="container mt-5">
     <h1>Всі користувачи</h1>
 
-    {% for u in users %}
+    {% for u in user %}
     <div class="alert alert-info">
-        <h2>{{   u.title   }}</h2>
-        <p>{{  u.intro   }}</p>
+        <h2>{{   u.username   }}</h2>
+        <p>{{  u.first_name   }}</p>
         <p><b>Дата створення: {{    u.date.date()    }}</b></p>
-        <a href="/articles/{{ article.id }}" class="btn btn-dark">Детальніше</a>
+        <a href="/articles/{{ u.id }}" class="btn btn-dark">Детальніше</a>
     </div>
     {% endfor %}
 </div>
