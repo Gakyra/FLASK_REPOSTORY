@@ -151,24 +151,25 @@ def user_delete(id):
 def create_user():
     if request.method == "POST":
         # Отримання даних з форми
-        title = request.form["title"]
-        intro = request.form["intro"]
-        text = request.form["text"]
+        username = request.form["username"]
+        password = request.form["password"]
+        first_name = request.form["first_name"]
 
         # Створення нового об'єкта користувача
-        user = Article(
-            title=title,
-            intro=intro,
-            text=text
+        Users = User(
+            username=username,
+            password=password,
+            first_name=first_name
         )
 
         try:
-            # Збереження користувача в базу даних
-            db.session.add(user)
+            # Збереження користувача
+            db.session.add(Users)
             db.session.commit()
             return redirect("/users")
         except Exception as exc:
             return f"При збереженні користувача виникла помилка: {exc}"
+
     else:
         return render_template("create_user.html")
 

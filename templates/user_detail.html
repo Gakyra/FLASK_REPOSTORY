@@ -9,7 +9,7 @@
      <h1>{{user.title}}</h1>
      <div class="alert alert-info">
      <p>{{   user.password   }}</p>
-     <p><b>Дата створення: {{    article.date.date()    }}</b></p>
+     <p><b>Дата створення: {{   user.date.date()    }}</b></p>
       <a href="/articles/{{ user.id }}/del" class="btn btn-danger">Видалити користувача</a>
       <a href="/articles/{{ user.id }}/update" class="btn btn-secondary">Редагувати користувача</a>
      </div>
