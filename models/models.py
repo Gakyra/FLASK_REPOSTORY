@@ -1,14 +1,8 @@
 import os
-from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from app import app
 from dotenv import load_dotenv
 
-load_dotenv()
-
-
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
-db = SQLAlchemy(app)
 
 
 class Article(db.Model):
