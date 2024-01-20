@@ -16,3 +16,5 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=5)
 
 cache = Cache(app, config={"CACHE_TYPE": "SimpleCache"})
 db = SQLAlchemy(app)
+
+from . import routes
