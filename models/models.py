@@ -1,6 +1,6 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
-from app import app
+from . import app
 from dotenv import load_dotenv
 
 

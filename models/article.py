@@ -1,10 +1,12 @@
 from .database import Base
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime
 from datetime import datetime
 
 
 class Article(Base):
+    __tablename__ = "article"
     id = Column(Integer, primary_key=True)
+
     title = Column(String(100), nullable=False)
     intro = Column(String(100), nullable=False)
     text = Column(String, nullable=False)

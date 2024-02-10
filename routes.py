@@ -1,7 +1,7 @@
-from models.database import session
+from .models.database import session
 from flask import render_template, request, redirect
-from models.article import Article
-from models.user import User
+from .models.article import Article
+from .models.user import User
 from . import app
 
 
